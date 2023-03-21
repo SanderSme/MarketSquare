@@ -9,6 +9,7 @@ function Router() {
                 <Route path="/" element={<Products/>}/>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/product/:id" element={<SingleProduct/>}/>
+                <Route path="/products/:id" element={<SingleProduct/>}/>
             </Routes>
         </>
     )

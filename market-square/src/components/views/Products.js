@@ -44,12 +44,6 @@ const Products = () => {
                             <p className="text-sm font-medium text-gray-900">NOK{product.price}</p>
                         </div>
                       </Link>
-                        <button
-                            type="button"
-                            className="rounded-md bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-auto"
-                        >
-                            Add to cart
-                        </button>
                     </div>
                 ))}
             </div>
