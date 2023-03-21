@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setLoadingState } from "./loaderSlice";
 
 //slice
     //name
@@ -30,11 +31,13 @@ const {SET_SINGLE_PRODUCT} = productsSlice.actions
 
 //Fetch all products
 export const fetchProducts = () => async (dispatch) => {
+    dispatch(setLoadingState(true))
     try {
         const response = await fetch('https://dummyjson.com/products')
         const data = await response.json();
         console.log(data.products);
         dispatch(SET_PRODUCTS(data.products));
+        dispatch(setLoadingState(false))
     } catch (e) {
         //handle any error
         return console.error(e);
@@ -43,11 +46,13 @@ export const fetchProducts = () => async (dispatch) => {
 
 //Fetch single product by id
 export const fetchSingleProduct = (id) => async (dispatch) => {
+    dispatch(setLoadingState(true))
     try {
         const response = await fetch(`https://dummyjson.com/products/${id}`)
         const data = await response.json();
         console.log(data);
         dispatch(SET_SINGLE_PRODUCT(data));
+        dispatch(setLoadingState(false))
     } catch (e) {
         //handle any error
         return console.error(e);
