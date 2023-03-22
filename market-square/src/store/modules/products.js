@@ -11,7 +11,7 @@ const productsSlice = createSlice({
     initialState: {
         products: [],
         singleProduct: null,
-        total: 0
+        isError: false
     },
     reducers:{ //here we declare the functions which amend our state
         SET_PRODUCTS:(state, action) => { //state is current state of this time - action: it will have the new state
@@ -19,6 +19,9 @@ const productsSlice = createSlice({
         },
         SET_SINGLE_PRODUCT:(state, action) => {
             state.singleProduct = action.payload
+        },
+        SET_ERROR:(state, action) => {
+            state.isError = action.payload
         }
     }
 })    
@@ -28,6 +31,7 @@ export default productsSlice.reducer
 //actions //API calls NB: we do not change the state here!
 const {SET_PRODUCTS} = productsSlice.actions
 const {SET_SINGLE_PRODUCT} = productsSlice.actions
+const {SET_ERROR} = productsSlice.actions
 
 //Fetch all products
 export const fetchProducts = () => async (dispatch) => {
@@ -47,14 +51,26 @@ export const fetchProducts = () => async (dispatch) => {
 //Fetch single product by id
 export const fetchSingleProduct = (id) => async (dispatch) => {
     dispatch(setLoadingState(true))
+    let response
     try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`)
+        response = await fetch(`https://dummyjson.com/products/${id}`)
         const data = await response.json();
         console.log(data);
         dispatch(SET_SINGLE_PRODUCT(data));
         dispatch(setLoadingState(false))
     } catch (e) {
         //handle any error
-        return console.error(e);
+        return console.error(e.message);
     }
+    if(response.ok){
+        console.log("response ok");
+        dispatch(handleErrorResponse(false))
+    } else {
+        console.log("response NOT ok");
+        dispatch(handleErrorResponse(true))
+    }
+}
+
+export const handleErrorResponse = (APIResponseStatus) => (dispatch) => {
+    dispatch(SET_ERROR(APIResponseStatus))
 }

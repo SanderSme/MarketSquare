@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/modules/products";
 import { Link } from "react-router-dom";
-import Header from "../Header";
+import Discount from "../Discount";
 
 const Products = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,6 @@ const Products = () => {
     console.log(products);
   return (
     <>
-    <Header/>
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div className="bg-white">
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -41,7 +40,7 @@ const Products = () => {
                                 </h3>
                                 <p className="mt-1 text-sm text-gray-500">{product.description}</p>
                             </div>
-                            <p className="text-sm font-medium text-gray-900">NOK{product.price}</p>
+                            <p className="text-sm font-medium text-gray-900">Price: <span className="text-md text-green-600">{Discount(product.price, product.discountPercentage)}$</span><strike className="ml-2 text-md text-red-600">{product.price}$</strike></p>
                         </div>
                       </Link>
                     </div>
