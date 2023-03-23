@@ -2,9 +2,9 @@ import {useFormik} from 'formik'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().min(2, "Too short").max(50, "Too long").required(),
-    email: Yup.string().required(),
-    message: Yup.string().min(20, "Too short").max(500, "Too long").required()
+    name: Yup.string().min(2).max(50).required(),
+    email: Yup.string().required().email(),
+    message: Yup.string().min(20).max(500).required()
 })
 
 const ContactForm = () => {
