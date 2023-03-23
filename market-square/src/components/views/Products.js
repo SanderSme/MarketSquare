@@ -40,7 +40,7 @@ const Products = () => {
                                 </h3>
                                 <p className="mt-1 text-sm text-gray-500">{product.description}</p>
                             </div>
-                            <p className="text-sm font-medium text-gray-900">Price: <span className="text-md text-green-600">{Discount(product.price, product.discountPercentage)}$</span><strike className="ml-2 text-md text-red-600">{product.price}$</strike></p>
+                            <p className="text-sm text-gray-900">Price: {Discount(product.price, product.discountPercentage)}</p>
                         </div>
                       </Link>
                     </div>

@@ -39,7 +39,6 @@ export const fetchProducts = () => async (dispatch) => {
     try {
         const response = await fetch('https://dummyjson.com/products')
         const data = await response.json();
-        console.log(data.products);
         dispatch(SET_PRODUCTS(data.products));
         dispatch(setLoadingState(false))
     } catch (e) {
@@ -55,7 +54,6 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
     try {
         response = await fetch(`https://dummyjson.com/products/${id}`)
         const data = await response.json();
-        console.log(data);
         dispatch(SET_SINGLE_PRODUCT(data));
         dispatch(setLoadingState(false))
     } catch (e) {
@@ -63,10 +61,8 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
         return console.error(e.message);
     }
     if(response.ok){
-        console.log("response ok");
         dispatch(handleErrorResponse(false))
     } else {
-        console.log("response NOT ok");
         dispatch(handleErrorResponse(true))
     }
 }

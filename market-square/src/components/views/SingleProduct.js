@@ -55,7 +55,7 @@ const SingleProduct = () => {
             <div className="border-t border-gray-200 pt-4">
               <dt className="font-medium text-gray-900">{singleProduct.title}</dt>
               <dd className="mt-2 text-sm text-gray-500">{singleProduct.brand} {singleProduct.category}</dd>
-              <dd className="mt-2 text-sm text-gray-500">Price: <span className="text-lg text-green-600">{Discount(singleProduct.price, singleProduct.discountPercentage)}$</span><strike className="ml-4 text-lg text-red-600">{singleProduct.price}$</strike></dd>
+              <dd className="mt-2 text-sm text-gray-500">Price: {Discount(singleProduct.price, singleProduct.discountPercentage)}</dd>
               <dd className="mt-2 text-sm text-gray-500">Rating: {singleProduct.rating}/5</dd>
             </div>
         </dl>

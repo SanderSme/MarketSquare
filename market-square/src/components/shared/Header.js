@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
     const {numberOfItemsInCart} = useSelector(state => state.cart)
     const linkStyles =
-    "text-xs lg:text-sm font-medium text-gray-700 hover:text-gray-800";
-  const activeLinkStyles = "underline " + linkStyles;
+    "text-xs lg:text-sm font-medium hover:text-gray-800";
+  const activeLinkStyles = "text-blue-600 " + linkStyles;
   return (
     <div className="bg-white">
     <header className="relative bg-white">
